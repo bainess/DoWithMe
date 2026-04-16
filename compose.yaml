@@ -1,0 +1,40 @@
+version: "3.9"
+
+services:
+  server:
+    build:
+      context: .
+    image: kanban-service
+    container_name: kanban-server
+    ports:
+      - "9090:9090"
+    depends_on:
+      - db
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://db:5432/kanban
+      SPRING_DATASOURCE_USERNAME: gardenkanban
+      SPRING_DATASOURCE_PASSWORD: 12345
+    networks:
+      - kanban-net
+
+  db:
+    image: postgres:16.1
+    container_name: kanban-postgres
+    ports:
+      - "5433:5432"
+    volumes:
+      - "D:/Normandy/java_projects/garden-kanban-db:/var/lib/postgresql/data"
+    environment:
+      POSTGRES_DB: kanban
+      POSTGRES_USER: gardenkanban
+      POSTGRES_PASSWORD: "12345"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U gardenkanban -d kanban"]
+      timeout: 5s
+      interval: 5s
+      retries: 10
+    networks:
+      - kanban-net
+
+networks:
+  kanban-net:
