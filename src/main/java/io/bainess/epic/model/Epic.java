@@ -22,6 +22,7 @@ public class Epic {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Builder.Default
     @OneToMany(mappedBy = "epic")
     private List<Task> tasks = new ArrayList<>();
 
