@@ -25,6 +25,7 @@ public class Board {
     @JoinColumn(name = "owner_id")
     private User owner;
 
+    @Builder.Default
     @ManyToMany
     @JoinTable(name = "board_collaborators",
             joinColumns = @JoinColumn(name = "board_id"),

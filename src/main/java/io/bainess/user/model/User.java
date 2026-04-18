@@ -23,6 +23,7 @@ public class User {
 
     private String nickname;
 
+    @Builder.Default
     @ManyToMany(mappedBy = "collaborators")
     private List<Board> boards = new ArrayList<>();
 
