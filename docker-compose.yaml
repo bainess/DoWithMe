@@ -1,5 +1,4 @@
 version: "3.9"
-
 services:
   server:
     build:
@@ -7,9 +6,10 @@ services:
     image: kanban-service
     container_name: kanban-server
     ports:
-      - "9090:9090"
+      - "8080:8080"
     depends_on:
-      - db
+      db:
+        condition: service_healthy
     environment:
       SPRING_DATASOURCE_URL: jdbc:postgresql://db:5432/kanban
       SPRING_DATASOURCE_USERNAME: gardenkanban
