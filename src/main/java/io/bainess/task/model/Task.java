@@ -24,8 +24,10 @@ public class Task {
 
     private String text;
 
+    @Column(name = "created_at")
     private LocalDateTime createdAt;
 
+    @Enumerated(EnumType.STRING)
     private Status status;
 
     @ManyToOne(fetch = FetchType.LAZY)
@@ -37,7 +39,7 @@ public class Task {
     private User author;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "assigned_to_id")
+    @JoinColumn(name = "assigned_to")
     private User assignedTo;
 
     @Override
