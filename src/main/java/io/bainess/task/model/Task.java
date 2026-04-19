@@ -31,7 +31,7 @@ public class Task {
     private Status status;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "epic_id")
+    @JoinColumn(name = "epic_id", nullable = true)
     private Epic epic;
 
     @ManyToOne(fetch = FetchType.LAZY)
