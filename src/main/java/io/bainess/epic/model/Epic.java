@@ -1,7 +1,7 @@
 package io.bainess.epic.model;
 
+import io.bainess.board.model.Board;
 import io.bainess.task.model.Task;
-import io.bainess.user.model.User;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -25,6 +25,10 @@ public class Epic {
     @Builder.Default
     @OneToMany(mappedBy = "epic")
     private List<Task> tasks = new ArrayList<>();
+
+    @ManyToOne
+    @JoinColumn(name = "board_id")
+    private Board board;
 
     @Override
     public boolean equals(Object o) {

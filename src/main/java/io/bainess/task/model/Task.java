@@ -1,5 +1,6 @@
 package io.bainess.task.model;
 
+import io.bainess.board.model.Board;
 import io.bainess.epic.dto.EpicDto;
 import io.bainess.epic.model.Epic;
 import io.bainess.user.model.User;
@@ -33,6 +34,10 @@ public class Task {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "epic_id", nullable = true)
     private Epic epic;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "board_id")
+    private Board board;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "author_id")

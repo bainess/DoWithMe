@@ -1,5 +1,7 @@
 package io.bainess.board.model;
 
+import io.bainess.epic.model.Epic;
+import io.bainess.task.model.Task;
 import io.bainess.user.model.User;
 import jakarta.persistence.*;
 import lombok.*;
@@ -31,6 +33,12 @@ public class Board {
             joinColumns = @JoinColumn(name = "board_id"),
             inverseJoinColumns = @JoinColumn(name = "user_id"))
     private List<User> collaborators = new ArrayList<>();
+
+    @OneToMany(mappedBy = "board")
+    private List<Task> tasks = new ArrayList<>();
+
+    @OneToMany
+    private List<Epic> epics = new ArrayList<>();
 
     public void addCollobarator(User collaborator) {
         collaborators.add(collaborator);
