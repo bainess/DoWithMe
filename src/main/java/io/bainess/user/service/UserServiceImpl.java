@@ -1,5 +1,6 @@
 package io.bainess.user.service;
 
+import io.bainess.exception.NotFoundException;
 import io.bainess.user.dto.NewUserRequest;
 import io.bainess.user.dto.UserDto;
 import io.bainess.user.mapper.UserMapper;
@@ -16,6 +17,11 @@ public class UserServiceImpl implements UserService{
     public UserDto saveUser(NewUserRequest request) {
         User user = UserMapper.mapToUser(request);
         userRepository.save(user);
+        return UserMapper.mapToUserDto(user);
+    }
+
+    public UserDto getUser(Long id) {
+        User user =  userRepository.findById(id).orElseThrow(() -> new NotFoundException("User with id " + id + " was not found"));
         return UserMapper.mapToUserDto(user);
     }
 }

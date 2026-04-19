@@ -6,4 +6,6 @@ import io.bainess.user.dto.UserDto;
 public interface UserService {
 
     UserDto saveUser(NewUserRequest request);
+
+    UserDto getUser(Long id);
 }
