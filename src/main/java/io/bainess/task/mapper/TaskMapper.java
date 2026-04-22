@@ -8,16 +8,14 @@ import io.bainess.user.model.User;
 
 public class TaskMapper {
 
-    public static Task mapToTask(NewTaskRequest request, User user, Epic epic) {
+    public static Task mapToTask(NewTaskRequest request) {
         return Task.builder()
                 .text(request.getText())
                 .status(request.getStatus())
-                .author(user)
-                .epic(epic)
                 .build();
     }
 
-    public TaskMinimalDto mapToTaskMinimalDto(Task task) {
+    public static TaskMinimalDto mapToTaskMinimalDto(Task task) {
         return TaskMinimalDto.builder()
                 .id(task.getId())
                 .text(task.getText())
